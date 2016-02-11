@@ -26,6 +26,8 @@ public class CheckerBoard {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.blocks = new Rectangle[numRows][numCols];
+        this.lightColor = Color.RED;
+        this.darkColor = Color.BLACK;
     }
     
     CheckerBoard(int numRows, int numCols, int boardWidth, int boardHeight, Color lightColor, Color darkColor) {
