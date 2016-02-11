@@ -160,7 +160,7 @@ public class CheckerBoard {
     private void addBlocksToGrid() {
         for (int i = 0; i < this.numRows; i++) {
             for (int j = 0; j < this.numCols; j++) {
-                
+                this.grid.add(this.blocks[i][j], j, i);
             }
         }
     }
