@@ -109,6 +109,22 @@ public class CheckerBoard {
     }
     
     /**
+     * Set the width of the board
+     * @param width 
+     */
+    public void setWidth(int width) {
+        this.boardWidth = width;
+    }
+    
+    /**
+     * Set the height of the board
+     * @param height 
+     */
+    public void setHeight(int height) {
+        this.boardHeight = height;
+    }
+    
+    /**
      * Construct a checker board to be placed on the scene
      * @return 
      */
@@ -133,7 +149,7 @@ public class CheckerBoard {
     }
     
     /**
-     * 
+     * Generate the spaces for the board.
      */
     private void generateBlocks() {
         for (int i = 0; i < this.numRows; i++) {
@@ -144,7 +160,9 @@ public class CheckerBoard {
     }
     
     /**
-     * 
+     * The algorithm that determines whether to use the dark or light color
+     * blocks.  It adds the row and col index, if it is odd it is a dark color,
+     * even result in light.  The indices start at 0.
      * @param row
      * @param col
      * @return 
@@ -157,12 +175,22 @@ public class CheckerBoard {
     }
     
     /**
-     * 
+     * Append the blocks to the grid.
      */
     private void addBlocksToGrid() {
         for (int i = 0; i < this.numRows; i++) {
             for (int j = 0; j < this.numCols; j++) {
                 this.grid.add(this.blocks[i][j], j, i);
+            }
+        }
+    }
+    
+    public void refreshBlockDimensions() {
+        this.calculateBlockDimensions();
+        for (int i = 0; i < this.numRows; i++) {
+            for (int j = 0; j < this.numCols; j++) {
+                this.blocks[i][j].setHeight(this.squareHeight);
+                this.blocks[i][j].setWidth(this.squareWidth);
             }
         }
     }

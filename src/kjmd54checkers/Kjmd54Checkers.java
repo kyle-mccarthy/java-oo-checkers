@@ -6,6 +6,7 @@
 package kjmd54checkers;
 
 import javafx.application.Application;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
@@ -28,8 +29,21 @@ public class Kjmd54Checkers extends Application {
     @Override
     public void start(Stage primaryStage) {
         checkerBoard = new CheckerBoard(numRows, numCols, boardWidth, boardHeight, lightColor, darkColor);
+        //checkerBoard = new CheckerBoard(numRows, numCols, boardWidth, boardHeight);
         GridPane board = checkerBoard.build();
         Scene scene = new Scene(board, boardWidth, boardHeight);
+        
+        // listen for the resizing of the width
+        scene.widthProperty().addListener((ObservableValue<? extends Number> observable, Number oldWidth, Number newWidth) -> {
+            checkerBoard.setWidth(newWidth.intValue());
+            checkerBoard.refreshBlockDimensions();
+        });
+        
+        // listen for the resizing of the height
+        scene.heightProperty().addListener((ObservableValue<? extends Number> observable, Number oldHeight, Number newHeight) -> {
+            checkerBoard.setHeight(newHeight.intValue());
+            checkerBoard.refreshBlockDimensions();
+        });
         
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
